@@ -33,7 +33,7 @@ class IBANValidationModelViewTest {
 
     @Test
     fun `onPasteText with valid text starting with AE works correctly`() {
-        viewModel.onPasteText("AE12345678901234567890123")
+        viewModel.onPasteText("AE33345678901234567890123")
         assertEquals("AE12 3456 7890 1234 5678 901", viewModel.textState.value.text)
         assertEquals("", viewModel.errorMessage.value)
     }
@@ -42,5 +42,17 @@ class IBANValidationModelViewTest {
     fun `onPasteText with invalid text shows error message`() {
         viewModel.onPasteText("BE12345678901234567890123")
         assertEquals("IBAN start with AE", viewModel.errorMessage.value)
+    }
+
+    @Test
+    fun `when input contains lowercase letters, show error message`() {
+        viewModel.onTextChange("AE1234abcd5678")
+        assertEquals("Only capital letters and numbers are allowed", viewModel.errorMessage.value)
+    }
+
+    @Test
+    fun `onPasteText with invalid characters shows error message`() {
+        viewModel.onPasteText("AE1234abcd5678")
+        assertEquals("Only capital letters and numbers are allowed", viewModel.errorMessage.value)
     }
 }
