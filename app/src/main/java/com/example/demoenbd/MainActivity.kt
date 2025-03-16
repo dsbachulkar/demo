@@ -46,8 +46,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 }
 
 
-
-
 @Composable
 fun CustomTextField() {
     var textState by remember { mutableStateOf(TextFieldValue()) }
@@ -80,8 +78,8 @@ fun CustomTextField() {
 }
 
 @Composable
-fun ibanValidation(){
-    var formattedText by remember {  mutableStateOf("") }
+fun ibanValidation() {
+    var formattedText by remember { mutableStateOf("") }
 
     OutlinedTextField(
         value = formattedText,
@@ -94,6 +92,7 @@ fun ibanValidation(){
     )
 
 }
+
 // Extension function to insert spaces at specific indices
 fun String.insertSpacesAt(indices: Array<Int>): String {
     val builder = StringBuilder(this)
@@ -104,6 +103,7 @@ fun String.insertSpacesAt(indices: Array<Int>): String {
     }
     return builder.toString()
 }
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
