@@ -166,7 +166,27 @@ fun ComponentIBANValidation(
 //        singleLine = true
 //    )
 //}
+val regex = """^[a-zA-Z0-9@#\$%^&*()-+=]{2,59}(?: [a-zA-Z0-9@#\$%^&*()-+=])?$""".toRegex()
 
+fun isValidInput(input: String): Boolean {
+    return regex.matches(input)
+}
+
+// Test cases
+fun main() {
+    val testInputs = listOf(
+        "Hello123",        // Valid
+        "H@",              // Invalid (less than 3 characters)
+        "Hello 123@",      // Valid (one space allowed)
+        "Hello  World",    // Invalid (more than one space)
+        "ThisIsAValidStringWithSpecial#Chars", // Valid
+        "A very long string that exceeds the sixty character limit 1234567890", // Invalid
+    )
+
+    testInputs.forEach {
+        println("$it -> ${isValidInput(it)}")
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
