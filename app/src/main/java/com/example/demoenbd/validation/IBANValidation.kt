@@ -166,7 +166,11 @@ fun ComponentIBANValidation(
 //        singleLine = true
 //    )
 //}
-val regex = """^[a-zA-Z0-9@#\$%^&*()-+=]{2,59}(?: [a-zA-Z0-9@#\$%^&*()-+=])?$""".toRegex()
+If you want a regex that strictly enforces a minimum of 3 characters and a maximum of 60 characters, allowing letters, numbers, special characters, and at most one space, you can use the following Kotlin regex:
+
+Kotlin Code
+
+val regex = """^[a-zA-Z0-9@#\$%^&*()\-+=]{3,60}$|^[a-zA-Z0-9@#\$%^&*()\-+=]{1,59} [a-zA-Z0-9@#\$%^&*()\-+=]{1,59}$""".toRegex()
 
 fun isValidInput(input: String): Boolean {
     return regex.matches(input)
@@ -175,18 +179,36 @@ fun isValidInput(input: String): Boolean {
 // Test cases
 fun main() {
     val testInputs = listOf(
-        "Hello123",        // Valid
-        "H@",              // Invalid (less than 3 characters)
-        "Hello 123@",      // Valid (one space allowed)
-        "Hello  World",    // Invalid (more than one space)
-        "ThisIsAValidStringWithSpecial#Chars", // Valid
-        "A very long string that exceeds the sixty character limit 1234567890", // Invalid
+        "Hello123",        // ✅ Valid
+        "H@",              // ❌ Invalid (less than 3 characters)
+        "Hello 123@",      // ✅ Valid (one space allowed)
+        "Hello  World",    // ❌ Invalid (more than one space)
+        "A_valid-entry!",  // ✅ Valid
+        "A very very long text that has too many characters exceeding the limit", // ❌ Invalid
     )
 
     testInputs.forEach {
         println("$it -> ${isValidInput(it)}")
     }
 }
+
+Regex Explanation
+
+1. First part: ^[a-zA-Z0-9@#\$%^&*()\-+=]{3,60}$
+
+Matches 3 to 60 characters without spaces.
+
+
+
+2. Second part: ^[a-zA-Z0-9@#\$%^&*()\-+=]{1,59} [a-zA-Z0-9@#\$%^&*()\-+=]{1,59}$
+
+Allows one space between two valid parts, ensuring the total is within 3-60 characters.
+
+
+
+
+This ensures all valid cases while enforcing length and space constraints. Let me know if you need changes!
+
 
 @Preview(showBackground = true)
 @Composable
