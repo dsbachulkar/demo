@@ -176,7 +176,7 @@ fun isValidInput(input: String): Boolean {
     return regex.matches(input)
 }
 
-// Test cases
+// Test cases Enter 1ˢᵗ string at the top of the input field
 fun main() {
     val testInputs = listOf(
         "Hello123",        // ✅ Valid
@@ -192,22 +192,6 @@ fun main() {
     }
 }
 
-Regex Explanation
-
-1. First part: ^[a-zA-Z0-9@#\$%^&*()\-+=]{3,60}$
-
-Matches 3 to 60 characters without spaces.
-
-
-
-2. Second part: ^[a-zA-Z0-9@#\$%^&*()\-+=]{1,59} [a-zA-Z0-9@#\$%^&*()\-+=]{1,59}$
-
-Allows one space between two valid parts, ensuring the total is within 3-60 characters.
-
-
-
-
-This ensures all valid cases while enforcing length and space constraints. Let me know if you need changes!
 
 
 @Preview(showBackground = true)
