@@ -176,7 +176,7 @@ fun isValidInput(input: String): Boolean {
     return regex.matches(input)
 }
 
-// Test cases Enter 1ˢᵗ string at the top of the input field
+// Test cases Enter 1ˢᵗ string at the top of the input field  Display 4ᵗʰ string in the top field
 fun main() {
     val testInputs = listOf(
         "Hello123",        // ✅ Valid
